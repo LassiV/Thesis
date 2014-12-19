@@ -2,10 +2,6 @@
 #define LIGHT_H
 #include <SFML/Graphics.hpp>
 
-//#include <Lighting/Block.h>
-
-//#include <Lighting/ShadowCalculation.h>
-
 class Light
 {
 public:
@@ -19,8 +15,6 @@ public:
 	float GetIntensity();
 	sf::Vector2f GetPosition();
 
-	//void Render(sf::RenderTexture* renderTexture, const sf::Shader& lightShader, std::vector<Block*> blocks);
-
 private:
 	sf::Vector2f position;
 	int depth;
@@ -29,8 +23,6 @@ private:
 
 	sf::VertexArray tempVertices;
 	std::vector<short> tempIndices;
-
-//	ShadowCalculation* shadowCalc;
 };
 
 #endif

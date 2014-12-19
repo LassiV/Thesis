@@ -15,8 +15,6 @@ public:
 
 	void SetVertices(std::vector<PrimitiveShape*> shapes);
 
-	//void BatchBlocks(std::vector<Block*> blocks);
-
 	void SetTexture(sf::Texture* texture);
 
 	void SetShader(const sf::Shader& shader);
@@ -26,8 +24,6 @@ public:
 	void RenderToTexture(sf::RenderTexture &renderTexture, const Effect& effect);
 
 private:
-
-	//sf::VertexArray vertices;
 
 	std::vector<sf::Vertex> vertices; 
 

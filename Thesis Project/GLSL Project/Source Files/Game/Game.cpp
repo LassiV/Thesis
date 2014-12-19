@@ -63,7 +63,6 @@ void Game::Initialise()
 	bulletTex.loadFromFile("Textures/bullet.png");
 	enemyTex.setSmooth(true);
 	bulletTex.setSmooth(true);
-	//sword->loadFromFile("Textures/testsword.png");
 	sf::ContextSettings settings(0u, 0u, 4u, 4u, 5u);
 	renderWindow = new sf::RenderWindow(sf::VideoMode(800u, 600u), "Game Window", 7u, settings);
 	
@@ -84,9 +83,9 @@ void Game::Initialise()
 	
 	lightEffect = new Effect("Shaders/default.vert", "Shaders/light.frag");
 	brightnessEffect = new Effect("Shaders/default.vert", "Shaders/brightness.frag");
-	//blurEffect = new Effect("Shaders/default.vert", "Shaders/blur.frag");
 	bloomEffect = new BloomEffect("Shaders/default.vert", "Shaders/light.frag");
 
+	//Creating the background tiles
 	for (int i = 0; i < 16; i++)
 	{
 		for (int y = 0; y < 13; y++)
@@ -107,41 +106,16 @@ void Game::Initialise()
 		}
 	}
 
-	for(int i = 0; i < 1; i++)
-	{
-		for (int y = 0; y < 1; y++)
-		{
-			sf::Color color;
-			
-			if(y == 0 && i == 0)
-				color = sf::Color::White;
-			/*
-			else if(y == 0 && i == 1)
-				color = sf::Color::Red;
-			else if (y == 1 && i == 0)
-				color = sf::Color::Blue;
-			else if (y == 1 && i == 1)
-				color = sf::Color::Green;
-				*/
-			//Light* light = new Light(sf::Vector2f(200.0f + i * 300.f, 150.f + 300.f*y), color, 0, 300.0f, 400.0f, 100.0f);
-			Light* light = new Light(sf::Vector2f(700.0f, 0.f), color, 0, 300.0f, 800.f, 400.0f);
-			lights.push_back(light);
-		}
-	}
+	Light* light = new Light(sf::Vector2f(700.0f, 0.f), sf::Color::White, 0, 300.0f, 800.f, 400.0f);
+	lights.push_back(light);
 
 	renderer->SetVertices(backgroundTiles);
-	//renderer->SetShader(defaultEffect);
-	//renderer->SetTexture(texture);
 };
 
 void Game::UpdateObjects()
 {
 	player.Update(deltaTime, sf::Vector2f(sf::Mouse::getPosition(*renderWindow)));
-	
-	for (unsigned int i = 0; i < backgroundTiles.size(); i++)
-	{
-		//backgroundTiles[i]->Update(deltaTime);
-	}
+
 	renderer->SetVertices(backgroundTiles);
 
 	if (enemies.size() > 0)
@@ -244,7 +218,6 @@ void Game::Update()
 		UpdateObjects();
 		CheckCollisions();
 		Draw();
-		//printf("Framerate : %f\n", 1.0f/deltaTime);
 	}
 };
 
@@ -283,10 +256,7 @@ void Game::NormalDraw()
 	sf::Sprite sprite(normalRender->getTexture());
 	normalRender->display();
 
-	sf::RenderStates states;
-	//states.shader = &brightnessEffect->Get();
-
-	renderWindow->draw(sprite, states);
+	renderWindow->draw(sprite);
 
 	renderWindow->display();
 }

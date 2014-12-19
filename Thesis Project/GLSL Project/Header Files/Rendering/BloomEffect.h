@@ -18,8 +18,6 @@ public:
 
 private:
 
-	//std::vector<sf::RenderTexture> textures;
-
 	sf::RenderTexture brightnessPassTexture;
 	sf::RenderTexture firstPass1;
 	sf::RenderTexture firstPass2;
